@@ -1,0 +1,160 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>
+		WEB CALCULATOR
+		</title>
+		
+		<script type="text/javascript">
+		    var z=0;
+		    /*function for display digit and value*/
+			function display(num)
+			{
+			    if(webcalc.txt.value.length<14)
+				{
+				
+			     if(z==1 || webcalc.txt.value=="Infinity")
+				 {
+				 z=0;
+				webcalc.txt.value=num;
+				}
+				else
+				webcalc.txt.value+=num;
+				}
+				else
+				{
+				  webcalc.txt.value="length exceed";
+				  z=1;
+				}
+			}
+			
+		    /*function for all clear*/
+			function ac()
+			{
+				webcalc.txt.value='';
+			}
+			
+		    /*function for delete a single digit*/
+			function del()
+			{	
+				webcalc.txt.value=webcalc.txt.value.slice(0,webcalc.txt.value.length-1);
+			}
+			
+			function runscript(e)
+			{
+			if(e.keyCode == 13)
+			{
+			var tb=document.getElementById("script");
+			webcalc.txt.value=eval(tb.value);
+			return false;
+			}
+			}
+		</script>
+		
+		<style>
+			/*style of boundary of calculator and its position*/
+			#container
+			{
+			margin-left: auto;
+			margin-right: auto;
+			max-width:327px;
+			margin-top: 20px;
+			border: 1px solid white;
+			}
+			
+			/*style of bottom of class 'btn' type*/
+			.btn
+			{
+			width :71px;
+			height: 90px;
+			border: 0px solid white;
+			/* margin:top right=left bottom*/
+			margin:0px 0px 0px;
+			background-color:#FAFAFA;
+			font-size:30px;
+			}
+			
+			.btn2
+			{
+			width :65px;
+			height: 90px;
+			border: 0px solid white;
+			/* margin:top right=left bottom*/
+			margin:0px 0px 0px;
+			background-color:#EBEDEF;
+			font-size:30px;
+			}
+			
+			/*style of bottom of class 'btn' type*/
+			.btn1
+			{
+			width:68px;
+			height:60px;
+			border:0px solid white;
+			margin :0px 0px 0px;
+			background-color:#F2F2F2;
+			margin-left:0px;
+			font-size:30px;
+			}
+		</style>
+	</head>
+	
+	<body> 
+		<div id="container">
+			<table cellspacing="0%">
+				<form name=webcalc >
+					<tr>
+						<input type=text id="script" name=txt onkeypress="return runscript(event)" style="text-align:right; height:80px;
+								border:1px solid #D8D8D8;font-size:40px; width:323px; color:#BDBDBD;" ><br>
+					</tr>
+					<tr>
+					        <input class="btn2" type=button name=brl value=( onclick="display(brl.value)">
+							<input class="btn2" type=button name=brr value=) onclick="display(brr.value)">
+							<input class="btn2" type=button name=sqrt value=&radic; onclick="txt.value=(Math.sqrt(txt.value)).toPrecision(5);">
+							<input class="btn2" type=button name=sq value=sq onclick="txt.value=Math.pow(txt.value,2)">
+							<input class="btn2" type=button name=mod value=% onclick="display(mod.value)">
+							
+					</tr>
+					<tr>
+							<input class="btn2" type=button name=sin value=sin onclick="txt.value=(Math.sin(txt.value)).toPrecision(5);">
+							<input class="btn2" type=button name=cos value=cos onclick="txt.value=(Math.cos(txt.value)).toPrecision(5);">
+							<input class="btn2" type=button name=tan value=tan onclick="txt.value=(Math.tan(txt.value,2)).toPrecision(5);">
+							<input class="btn2" type=button name=log value=log onclick="txt.value=(Math.log(txt.value)).toPrecision(5);">
+							<input class="btn2" type="button" name=pi value=pi onclick="txt.value+=(Math.PI).toPrecision(5);"><br>
+							
+					</tr>
+					<tr>
+						<td bgcolor="#FAFAFA" width="230px">
+							<input class="btn" type=button name=btn7 value=7 onclick="display(btn7.value)">
+							<input class="btn" type=button name=btn8 value=8 onclick="display(btn8.value)">
+							<input class="btn" type="button" name="btn9" value="9" onclick="display(btn9.value)"><br>
+							<input class="btn" type=button name=btn4 value=4 onclick="display(btn4.value)">
+							<input class="btn" type=button name=btn5 value=5 onclick="display(btn5.value)">
+							<input class="btn" type=button name=btn6 value=6 onclick="display(btn6.value)"><br>
+							<input class="btn" type=button name=btn1 value=1 onclick="display(btn1.value)">
+							<input class="btn" type=button name=btn2 value=2 onclick="display(btn2.value)">
+							<input class="btn" type=button name=btn3 value=3 onclick="display(btn3.value)"><br>
+							<input class="btn" type=button name=btndot value=. onclick="display(btndot.value)"">
+							<input class="btn" type=button name=btn0 value=0 onclick="display(btn0.value)">
+							<input class="btn" type="button" value="DEL" onclick="del()">
+						</td>
+							
+						<td width="68px">
+							<input class="btn1" type="button" value="AC" onclick="ac()"><br>
+							<input class="btn1" type=button name=btndiv value=/ onclick="display(btndiv.value)"><br>
+							<input class="btn1" type=button name=mulbtn value=* onclick="display(mulbtn.value)"><br>
+							<input class="btn1" type=button name=subbtn value=- onclick="display(subbtn.value)"><br>
+							<input class="btn1" type=button name=addbtn value=+ onclick="display(addbtn.value)"><br>
+							<input class="btn1" type=button name=btneq value== onclick="try {txt.value=(eval(txt.value)).toPrecision(5); }
+                             catch(err) {z=1; txt.value=err.message;}">
+						</td>
+						
+						<td bgcolor="#FFBF00" style="width:7%;">
+		
+						</td>
+					</tr>
+				</form>
+			</table>
+		</div>	
+	</body>
+</html>
